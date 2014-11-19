@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'active_support/core_ext/numeric/time'
-require 'active_support/core_ext/object/with_options.rb'
+require 'active_support'
+require 'active_support'
 I18n.locale = :en
 
-require 'precise_distance_of_time_in_words.rb'
+require 'precise_distance_of_time_in_words'

@@ -12,17 +12,21 @@ describe PreciseDistanceOfTimeInWords do
     end
 
     it 'calculates time differences properly' do
-      precise_distance_of_time_in_words(1.second).should == '1 second'
-      precise_distance_of_time_in_words(@time1, @time1).should == ''
-      precise_distance_of_time_in_words(@time1, @time2).should == '1 second'
-      precise_distance_of_time_in_words(@time1, @time3).should == '1 minute'
-      precise_distance_of_time_in_words(@time1, @time4).should == '1 hour'
-      precise_distance_of_time_in_words(@time1, @time5).should == '1 hour and 5 minutes'
-      precise_distance_of_time_in_words(@time1, @time6).should == '1 hour and 5 minutes'
+      expect(precise_distance_of_time_in_words(1.second)).to eq('1 second')
+      expect(precise_distance_of_time_in_words(@time1, @time1)).to eq('')
+      expect(precise_distance_of_time_in_words(@time1, @time2)).to eq('1 second')
+      expect(precise_distance_of_time_in_words(@time1, @time3)).to eq('1 minute')
+      expect(precise_distance_of_time_in_words(@time1, @time4)).to eq('1 hour')
+      expect(precise_distance_of_time_in_words(@time1, @time5)).to eq('1 hour and 5 minutes')
+      expect(precise_distance_of_time_in_words(@time1, @time6)).to eq('1 hour and 5 minutes')
     end
 
-    it 'support other languages' do
-      precise_distance_of_time_in_words(2.second, 0, locale: :de).should == '2 Sekunden'
+    it 'should support German' do
+      expect(precise_distance_of_time_in_words(2.second, 0, :locale => :de)).to eq('2 Sekunden')
+    end
+
+    it 'should support French' do
+      expect(precise_distance_of_time_in_words(@time1, @time6, :locale => :fr)).to eq('1 heure et 5 minutes')
     end
   end
 end

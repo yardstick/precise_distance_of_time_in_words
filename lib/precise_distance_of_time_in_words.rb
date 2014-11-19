@@ -3,7 +3,7 @@ require "precise_distance_of_time_in_words/version"
 module PreciseDistanceOfTimeInWords
   def precise_distance_of_time_in_words(from_time, to_time=0, options = {})
     options = {
-      scope: :'datetime.precise_distance_in_words'
+      :scope => :'datetime.precise_distance_in_words'
     }.merge!(options)
 
     # using to_time casting method of objects when presented
@@ -21,13 +21,13 @@ module PreciseDistanceOfTimeInWords
 
     words = ''
 
-    I18n.with_options( locale: options[:locale], scope: options[:scope] ) do |locale|
-      words << locale.t(:x_hours, count: hours) if hours > 0
+    I18n.with_options( :locale => options[:locale], :scope => options[:scope] ) do |locale|
+      words << locale.t(:x_hours, :count => hours) if hours > 0
       words << " #{locale.t(:and)} " if (hours > 0 && minutes > 0) # add_and_between?
-      words << locale.t(:x_minutes, count: minutes) if minutes > 0
+      words << locale.t(:x_minutes, :count => minutes) if minutes > 0
 
       if seconds > 0 && (minutes <= 0 && hours <= 0)
-        words << locale.t(:x_seconds, count: seconds)
+        words << locale.t(:x_seconds, :count => seconds)
       end
     end
 
